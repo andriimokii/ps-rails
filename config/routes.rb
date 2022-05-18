@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :users
+
+  get "signup" => "users#new"
+
   # get "movies" => "movies#index"
   # get "movies/new" => "movies#new"
   # get "movies/:id" => "movies#show", as: "movie"
