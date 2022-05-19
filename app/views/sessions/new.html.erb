@@ -1,0 +1,13 @@
+<h1>Sign In</h1>
+
+<%= form_with url: session_path, local: true, data: { turbo: false } do |form| %>
+    <%= form.label :email_or_username %>
+    <%= form.text_field :email_or_username, required: true, autofocus: true %>
+
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true %>
+
+    <%= link_to "Sign Up!", signin_path %>
+
+    <%= form.submit "Sign In" %>
+<% end %>

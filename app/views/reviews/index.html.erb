@@ -9,9 +9,12 @@
         <span class="date">
           <%= time_ago_in_words(review.created_at) %> ago
         </span>
-        <%= link_to "Delete Review", movie_review_path(@movie, review), class: "button", 
-          data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
-        <%= link_to "Edit Review", edit_movie_review_path(@movie, review), class: "button" %>
+        <div class="actions">
+          <%= link_to "Delete Review", movie_review_path(@movie, review), 
+            class: "button", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+          <%= link_to "Edit Review", edit_movie_review_path(@movie, review), 
+            class: "button" %>
+        </div>
       </p>
       <p>
         <%= review.comment %>
