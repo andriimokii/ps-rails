@@ -33,11 +33,13 @@
   </div>
 </section>
 
-<section class="admin">
-  <%= link_to "Edit Movie", edit_movie_path(@movie), class: "button" %>
-  <%= link_to "Delete Movie", movie_path(@movie), class: "button", 
-    data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
-</section>
+<% if current_user_admin? %>
+  <section class="admin">
+    <%= link_to "Edit Movie", edit_movie_path(@movie), class: "button" %>
+    <%= link_to "Delete Movie", movie_path(@movie), class: "button", 
+      data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+  </section>
+<% end %>
 
 <h2>Write Review</h2>
 <%= render "shared/reviews", { movie: @movie, review: @movie.reviews.new } %>

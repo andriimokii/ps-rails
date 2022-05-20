@@ -2,12 +2,38 @@
   <h1><%= profile_image(@user) %> <%= @user.name %> (<%= @user.username %>)</h1>
   <h2><%= mail_to(@user.email) %></h2>
   <div class="actions">
-    <%= link_to "Edit Account", edit_user_path(@user), class: "button edit" %>
-    <%= link_to "Destroy Account", @user, class: "button delete", 
-      data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+    <% if current_user?(@user) %>
+      <%= link_to "Edit Account", edit_user_path(@user), class: "button edit" %>
+    <% end %>
+    <% if current_user_admin? %>
+      <%= link_to "Destroy Account", @user, class: "button delete", 
+        data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+    <% end %>
   </div>
+  
   <h3>Member Since</h3>
   <p>
     <%= @user.created_at.strftime("%B %Y") %>
   </p>
+  
+  <% if @reviews.present? %>
+    <h3>Reviews</h3>
+    <% @reviews.each do |review| %>
+      <div class="review">
+        <div class="details">
+          <span class="title">
+            <%= link_to review.movie.title, review.movie %>
+          </span>
+          <%= render "shared/stars", percent: review.stars_as_percent %>
+          <span class="date">
+            <%= time_ago_in_words(review.created_at) %> ago
+          </span>
+          <p>
+            <%= profile_image(@user, 35) %>
+            <%= review.comment %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </section>

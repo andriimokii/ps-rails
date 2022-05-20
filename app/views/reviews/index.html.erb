@@ -5,20 +5,20 @@
     <li>
       <%= render "shared/stars", percent: review.stars_as_percent %>
       <p>
-        <%= review.name %>
+        <%= link_to review.user.name, review.user %>
         <span class="date">
           <%= time_ago_in_words(review.created_at) %> ago
         </span>
-        <div class="actions">
-          <%= link_to "Delete Review", movie_review_path(@movie, review), 
-            class: "button", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
-          <%= link_to "Edit Review", edit_movie_review_path(@movie, review), 
-            class: "button" %>
-        </div>
       </p>
       <p>
         <%= review.comment %>
       </p>
+      <div class="actions">
+          <%= link_to "Delete Review", movie_review_path(@movie, review), 
+            class: "button", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+          <%= link_to "Edit Review", edit_movie_review_path(@movie, review), 
+            class: "button" %>
+      </div>
     </li>
   <% end %>
 </ul>
