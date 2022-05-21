@@ -36,4 +36,17 @@
       </div>
     <% end %>
   <% end %>
+
+  <aside>
+    <div class="details">
+      <% if @favorite_movies.present? %>
+        <h3>Favorite Movies:</h3>
+        <div class="favorite-movies">
+          <% @favorite_movies.each do |favorite_movie| %>
+            <%= link_to image_tag(favorite_movie.image_file_name), favorite_movie %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
 </section>

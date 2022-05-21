@@ -213,7 +213,7 @@ section.movie-details {
       border-bottom-left-radius: 0;
     }
 
-    input[type="submit"] {
+    button[type="submit"] {
       @extend .btn, .btn-outline-secondary;
       border-color: #cdd3d8;
       border-right: none;
