@@ -52,6 +52,16 @@
         <% end %>
       </ul>
     <% end %>
+    <% if @genres.present? %>
+      <h3>Genres</h3>
+      <ul>
+        <% @genres.each do |genre| %>
+          <li>
+            <%= genre.name %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </aside>
 </section>
 
@@ -65,7 +75,3 @@
 
 <h2>Write Review</h2>
 <%= render "shared/reviews", { movie: @movie, review: @movie.reviews.new } %>
-
-<div class="faves">
-  <%= button_to "♥️ Fave", movie_favorites_path(@movie) %>
-</div>

@@ -1,8 +1,10 @@
 class Movie < ApplicationRecord
-    has_many :reviews, dependent: :destroy
+    has_many :reviews, -> { order(created_at: :desc) }, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :fans, through: :favorites, source: :user
     has_many :critics, through: :reviews, source: :user
+    has_many :characterizations, dependent: :destroy
+    has_many :genres, through: :characterizations
 
     RATINGS = %w(G PG PG-13 R NC-17)
 
@@ -23,17 +25,34 @@ class Movie < ApplicationRecord
         total_gross.blank? || total_gross < 225000000 
     end
 
-    def self.released
-        where("released_on < ?", Time.now).order(released_on: :desc)
-    end
+    scope :recent, ->(max=5) { released.limit(max) }
 
-    def self.hits
-        where("total_gross >= 300000000").order(total_gross: :desc)
-    end
+    scope :upcoming, lambda { where("released_on > ?", Time.now).
+        order(released_on: :asc) }
 
-    def self.flops
-        where("total_gross < 22500000").order(total_gross: :asc)
-    end
+    scope :released, -> { where("released_on < ?", Time.now).
+        order(released_on: :desc) }
+
+    # def self.released
+    #     where("released_on < ?", Time.now).order(released_on: :desc)
+    # end
+
+    scope :hits, -> { released.where("total_gross >= 300000000").
+        order(total_gross: :desc) }
+
+    # def self.hits
+    #     where("total_gross >= 300000000").order(total_gross: :desc)
+    # end
+
+    scope :flops, -> { released.where("total_gross < 22500000").
+        order(total_gross: :asc) }
+
+    # def self.flops
+    #     where("total_gross < 22500000").order(total_gross: :asc)
+    # end
+
+    scope :grossed_less_than, -> (amount){ released.where("total_gross < ?", amount) }
+    scope :grossed_greater_than, -> (amount){ released.where("total_gross > ?", amount) }
 
     def self.recently_added
         order("created_at desc").limit(3)

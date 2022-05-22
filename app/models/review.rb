@@ -15,4 +15,6 @@ class Review < ApplicationRecord
     (stars / 5.0) * 100.0
   end
 
+  scope :past_n_days, -> (n){ where("created_at > ?", n.days.ago ) }
+
 end
