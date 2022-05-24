@@ -43,7 +43,7 @@
         <h3>Favorite Movies:</h3>
         <div class="favorite-movies">
           <% @favorite_movies.each do |favorite_movie| %>
-            <%= link_to image_tag(favorite_movie.image_file_name), favorite_movie %>
+            <%= link_to main_image(favorite_movie), favorite_movie %>
           <% end %>
         </div>
       <% end %>

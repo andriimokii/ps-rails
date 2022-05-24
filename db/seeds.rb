@@ -162,8 +162,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 1_223_641_414,
     director: 'Anthony Russo',
-    duration: '181 min',
-    image_file_name: 'avengers-end-game.png'
+    duration: '181 min'
   },
   {
     title: 'Captain Marvel',
@@ -175,8 +174,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 1_110_662_849,
     director: 'Anna Boden',
-    duration: '124 min',
-    image_file_name: 'captain-marvel.png'
+    duration: '124 min'
   },
   {
     title: 'Black Panther',
@@ -188,8 +186,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 1_346_913_161,
     director: 'Ryan Coogler',
-    duration: '134 min',
-    image_file_name: 'black-panther.png'
+    duration: '134 min'
   },
   {
     title: 'Avengers: Infinity War',
@@ -201,8 +198,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 2_048_359_754,
     director: 'Anthony Russo',
-    duration: '149 min',
-    image_file_name: 'avengers-infinity-war.png'
+    duration: '149 min'
   },
   {
     title: 'Green Lantern',
@@ -214,8 +210,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 219_851_172,
     director: 'Martin Campbell',
-    duration: '114 min',
-    image_file_name: 'green-lantern.png'
+    duration: '114 min'
   },
   {
     title: 'Fantastic Four',
@@ -227,8 +222,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 168_257_860,
     director: 'Josh Trank',
-    duration: '100 min',
-    image_file_name: 'fantastic-four.png'
+    duration: '100 min'
   },
   {
     title: 'Iron Man',
@@ -242,8 +236,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 585_366_247,
     director: 'Jon Favreau',
-    duration: '126 min',
-    image_file_name: 'ironman.png'
+    duration: '126 min'
   },
   {
     title: 'Superman',
@@ -257,8 +250,7 @@ Movie.create!([
     rating: 'PG',
     total_gross: 300_451_603,
     director: 'Richard Donner',
-    duration: '143 min',
-    image_file_name: 'superman.png'
+    duration: '143 min'
   },
   {
     title: 'Spider-Man',
@@ -273,8 +265,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 825_025_036,
     director: 'Sam Raimi',
-    duration: '121 min',
-    image_file_name: 'spiderman.png'
+    duration: '121 min'
   },
   {
     title: 'Batman',
@@ -287,8 +278,7 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 411_348_924,
     director: 'Tim Burton',
-    duration: '126 min',
-    image_file_name: 'batman.png'
+    duration: '126 min'
   },
   {
     title: "Catwoman",
@@ -300,8 +290,7 @@ Movie.create!([
     rating: "PG-13",
     total_gross: 82_102_379,
     director: "Jean-Christophe 'Pitof' Comar",
-    duration: "101 min",
-    image_file_name: "catwoman.png"
+    duration: "101 min"
   },
   {
     title: "Wonder Woman",
@@ -313,8 +302,7 @@ Movie.create!([
     rating: "PG-13",
     total_gross: 821_847_012,
     director: "Patty Jenkins",
-    duration: "141 min",
-    image_file_name: "wonder-woman.png"
+    duration: "141 min"
   }
 ])
 
@@ -335,3 +323,22 @@ Genre.create(name: "Documentary")
 Genre.create(name: "Adventure")
 Genre.create(name: "Animation")
 Genre.create(name: "Sci-Fi")
+
+[
+  ["Avengers: Endgame", "avengers-end-game.png"],
+  ["Captain Marvel", "captain-marvel.png"],
+  ["Black Panther", "black-panther.png"],
+  ["Avengers: Infinity War", "avengers-infinity-war.png"],
+  ["Green Lantern", "green-lantern.png"],
+  ["Fantastic Four", "fantastic-four.png"],
+  ["Iron Man", "ironman.png"],
+  ["Superman", "superman.png"],
+  ["Spider-Man", "spiderman.png"],
+  ["Batman", "batman.png"],
+  ["Catwoman", "catwoman.png"],
+  ["Wonder Woman", "wonder-woman.png"]
+].each do |movie_title, file_name|
+  movie = Movie.find_by!(title: movie_title)
+  file = File.open(Rails.root.join("app/assets/images/#{file_name}"))
+  movie.main_image.attach(io: file, filename: file_name)
+end
