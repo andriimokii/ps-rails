@@ -306,24 +306,57 @@ Movie.create!([
   }
 ])
 
-# Movies
+# Reviews
 # movie = Movie.find_by(title: "Captain Marvel")
 # movie.reviews.create!(user_id: "Larry", stars: 5, comment: "Awesome!")
 # movie.reviews.create!(name: "Daisy", stars: 4, comment: "Great!")
 # movie.reviews.create!(name: "Moe", stars: 3, comment: "Spilled my popcorn!")
 
-# Genres
-Genre.create(name: "Action")
-Genre.create(name: "Comedy")
-Genre.create(name: "Drama")
-Genre.create(name: "Romance")
-Genre.create(name: "Thriller")
-Genre.create(name: "Fantasy")
-Genre.create(name: "Documentary")
-Genre.create(name: "Adventure")
-Genre.create(name: "Animation")
-Genre.create(name: "Sci-Fi")
+# Create Users
+seed_user_password = Rails.application.credentials.dig(:seed_users, :password)
+User.create!([
+  {
+    name: "Guest User",
+    username: "guest",
+    email: "guest@example.com",
+    password: seed_user_password,
+    password_confirmation: seed_user_password
+  },
+  {
+    name: "Andrii Mokii",
+    username: "andriimokii",
+    email: "andriimokii@example.com",
+    password: seed_user_password,
+    password_confirmation: seed_user_password,
+    admin: true
+  }
+])
 
+# Create reviews
+Movie.all.each do |movie|
+  movie.reviews.create!([
+    {
+      stars: rand(1..5),
+      comment: "Good movie!",
+      user: User.all.sample
+    }
+  ])
+end
+
+# Create Genres
+[
+  "Action", "Comedy", "Drama", "Romance", "Thriller", 
+  "Fantasy", "Documentary", "Adventure", "Animation", "Sci-Fi"
+].each do |genre|
+  Genre.create!(name: genre)
+end
+
+# Assign each Genre to Movie
+Movie.all.each do |movie|
+  movie.genres << Genre.all.sample
+end
+
+# Active Storage
 [
   ["Avengers: Endgame", "avengers-end-game.png"],
   ["Captain Marvel", "captain-marvel.png"],

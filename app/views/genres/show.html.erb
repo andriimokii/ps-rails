@@ -1,0 +1,15 @@
+<h3><strong><%= @genre.name %></strong> movies &#128526;:</h3>
+
+<ul>
+    <% @movies.each do |movie| %>
+        <li><%= link_to movie.title, movie %> &bull; <%= year_of(movie) %></li>
+    <% end %>
+</ul>
+
+<% if current_user_admin? %>
+  <section class="admin">
+    <%= link_to "Edit Genre", edit_genre_path(@genre), class: "button" %>
+    <%= link_to "Delete Genre", @genre, class: "button", 
+      data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+  </section>
+<% end %>

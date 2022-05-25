@@ -57,7 +57,7 @@
       <ul>
         <% @genres.each do |genre| %>
           <li>
-            <%= genre.name %>
+            <%= link_to genre.name, genre %>
           </li>
         <% end %>
       </ul>
@@ -72,6 +72,3 @@
       data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
   </section>
 <% end %>
-
-<h2>Write Review</h2>
-<%= render "shared/reviews", { movie: @movie, review: @movie.reviews.new } %>
