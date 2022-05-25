@@ -43,14 +43,14 @@ class Movie < ApplicationRecord
     #     where("released_on < ?", Time.now).order(released_on: :desc)
     # end
 
-    scope :hits, -> { released.where("total_gross >= 300000000").
+    scope :hits, -> { released.where("total_gross >= 225000000").
         order(total_gross: :desc) }
 
     # def self.hits
     #     where("total_gross >= 300000000").order(total_gross: :desc)
     # end
 
-    scope :flops, -> { released.where("total_gross < 22500000").
+    scope :flops, -> { released.where("total_gross < 225000000").
         order(total_gross: :asc) }
 
     # def self.flops
