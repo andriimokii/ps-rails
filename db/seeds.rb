@@ -160,7 +160,7 @@ Movie.create!([
     }.squish,
     released_on: "2019-04-26",
     rating: 'PG-13',
-    total_gross: 1_223_641_414,
+    total_gross: 223_641_414,
     director: 'Anthony Russo',
     duration: '181 min'
   },
@@ -172,7 +172,7 @@ Movie.create!([
     }.squish,
     released_on: "2019-03-08",
     rating: 'PG-13',
-    total_gross: 1_110_662_849,
+    total_gross: 101_662_849,
     director: 'Anna Boden',
     duration: '124 min'
   },
@@ -184,7 +184,7 @@ Movie.create!([
     }.squish,
     released_on: "2018-02-16",
     rating: 'PG-13',
-    total_gross: 1_346_913_161,
+    total_gross: 224_913_161,
     director: 'Ryan Coogler',
     duration: '134 min'
   },
@@ -274,7 +274,7 @@ Movie.create!([
       The Dark Knight of Gotham City begins his war on crime with his
       first major enemy being the clownishly homicidal Joker.
     }.squish,
-    released_on: "1989-06-23",
+    released_on: "2030-06-23",
     rating: 'PG-13',
     total_gross: 411_348_924,
     director: 'Tim Burton',
@@ -286,7 +286,7 @@ Movie.create!([
     %{
       Patience Philips seems destined to spend her life apologizing for taking up space. Despite her artistic ability she has a more than respectable career as a graphic designer.
     }.squish,
-    released_on: "2004-07-23",
+    released_on: "2026-07-23",
     rating: "PG-13",
     total_gross: 82_102_379,
     director: "Jean-Christophe 'Pitof' Comar",
@@ -298,7 +298,7 @@ Movie.create!([
     %{
       When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.
     }.squish,
-    released_on: "2017-06-02",
+    released_on: "2025-06-02",
     rating: "PG-13",
     total_gross: 821_847_012,
     director: "Patty Jenkins",
