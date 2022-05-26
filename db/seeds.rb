@@ -337,7 +337,7 @@ User.create!([
   {
     name: "Andrii Mokii",
     username: "andriimokii",
-    email: "andriimokii@example.com",
+    email: "andriimokii@gmail.com",
     password: seed_user_password,
     password_confirmation: seed_user_password,
     admin: true
