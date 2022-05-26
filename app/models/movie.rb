@@ -83,6 +83,10 @@ class Movie < ApplicationRecord
         slug
     end
 
+    def review_present?(current_user)
+        return true if reviews && reviews.find_by(user_id: current_user.id)
+    end
+
 private
 
     def set_slug

@@ -11,13 +11,17 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @review = @movie.reviews.new(review_params)
-        @review.user = current_user
-
-        if @review.save
-            redirect_to movie_reviews_url(@movie), notice: "Thanks for your review!"
+        unless @movie.review_present?(current_user)
+            @review = @movie.reviews.new(review_params)
+            @review.user = current_user
+            
+            if @review.save
+                redirect_to movie_reviews_url(@movie), notice: "Thanks for your review!"
+            else
+                render :new
+            end
         else
-            render :new
+            redirect_to @movie, alert: "Can't create more than 1 review!"
         end
     end
 

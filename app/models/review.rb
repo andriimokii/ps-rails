@@ -16,5 +16,4 @@ class Review < ApplicationRecord
   end
 
   scope :past_n_days, -> (n){ where("created_at > ?", n.days.ago ) }
-
 end
