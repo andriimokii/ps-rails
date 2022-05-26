@@ -15,7 +15,20 @@
   <p>
     <%= @user.created_at.strftime("%B %Y") %>
   </p>
-  
+
+  <aside>
+    <div class="details">
+      <% if @favorite_movies.present? %>
+        <h3>Favorite Movies:</h3>
+        <div class="favorite-movies">
+          <% @favorite_movies.each do |favorite_movie| %>
+            <%= link_to main_image(favorite_movie), favorite_movie %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
+
   <% if @reviews.present? %>
     <h3>Reviews</h3>
     <% @reviews.each do |review| %>
@@ -36,17 +49,4 @@
       </div>
     <% end %>
   <% end %>
-
-  <aside>
-    <div class="details">
-      <% if @favorite_movies.present? %>
-        <h3>Favorite Movies:</h3>
-        <div class="favorite-movies">
-          <% @favorite_movies.each do |favorite_movie| %>
-            <%= link_to main_image(favorite_movie), favorite_movie %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </aside>
 </section>

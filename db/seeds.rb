@@ -162,7 +162,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 223_641_414,
     director: 'Anthony Russo',
-    duration: '181 min'
+    duration: '181 min',
+    youtube_embed_url: 'https://www.youtube.com/embed/AMSITikqKiM?rel=0'
   },
   {
     title: 'Captain Marvel',
@@ -174,7 +175,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 101_662_849,
     director: 'Anna Boden',
-    duration: '124 min'
+    duration: '124 min',
+    youtube_embed_url: 'https://www.youtube.com/embed/0LHxvxdRnYc?rel=0'
   },
   {
     title: 'Black Panther',
@@ -186,7 +188,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 224_913_161,
     director: 'Ryan Coogler',
-    duration: '134 min'
+    duration: '134 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=xjDjIWPwcPU'
   },
   {
     title: 'Avengers: Infinity War',
@@ -198,7 +201,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 2_048_359_754,
     director: 'Anthony Russo',
-    duration: '149 min'
+    duration: '149 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=hYW8dPjSfZ8'
   },
   {
     title: 'Green Lantern',
@@ -210,7 +214,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 219_851_172,
     director: 'Martin Campbell',
-    duration: '114 min'
+    duration: '114 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=Aa8BaQxB7sI'
   },
   {
     title: 'Fantastic Four',
@@ -222,7 +227,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 168_257_860,
     director: 'Josh Trank',
-    duration: '100 min'
+    duration: '100 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=fpjw6QZ4H7I'
   },
   {
     title: 'Iron Man',
@@ -236,7 +242,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 585_366_247,
     director: 'Jon Favreau',
-    duration: '126 min'
+    duration: '126 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=8ugaeA-nMTc'
   },
   {
     title: 'Superman',
@@ -250,7 +257,8 @@ Movie.create!([
     rating: 'PG',
     total_gross: 300_451_603,
     director: 'Richard Donner',
-    duration: '143 min'
+    duration: '143 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=grO4OcJ6cgY'
   },
   {
     title: 'Spider-Man',
@@ -265,7 +273,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 825_025_036,
     director: 'Sam Raimi',
-    duration: '121 min'
+    duration: '121 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=TYMMOjBUPMM'
   },
   {
     title: 'Batman',
@@ -278,7 +287,8 @@ Movie.create!([
     rating: 'PG-13',
     total_gross: 411_348_924,
     director: 'Tim Burton',
-    duration: '126 min'
+    duration: '126 min',
+    youtube_embed_url: 'https://www.youtube.com/watch?v=u34gHaRiBIU'
   },
   {
     title: "Catwoman",
@@ -290,7 +300,8 @@ Movie.create!([
     rating: "PG-13",
     total_gross: 82_102_379,
     director: "Jean-Christophe 'Pitof' Comar",
-    duration: "101 min"
+    duration: "101 min",
+    youtube_embed_url: 'https://www.youtube.com/watch?v=d6pJbjbRnAA'
   },
   {
     title: "Wonder Woman",
@@ -302,7 +313,8 @@ Movie.create!([
     rating: "PG-13",
     total_gross: 821_847_012,
     director: "Patty Jenkins",
-    duration: "141 min"
+    duration: "141 min",
+    youtube_embed_url: 'https://www.youtube.com/watch?v=1Q8fG0TtVAY'
   }
 ])
 
@@ -332,7 +344,7 @@ User.create!([
   }
 ])
 
-# Create reviews
+# Create reviews and fans for Movies
 Movie.all.each do |movie|
   movie.reviews.create!([
     {
@@ -341,6 +353,7 @@ Movie.all.each do |movie|
       user: User.all.sample
     }
   ])
+  movie.fans << User.all.sample
 end
 
 # Create Genres

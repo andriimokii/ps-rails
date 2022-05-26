@@ -566,3 +566,12 @@ section.errors {
     top: 0;
   }
 }
+
+.movie-trailer {
+  margin-top: 1rem;
+
+  iframe {
+    width: 100%;
+    height: 400px;
+  }
+}

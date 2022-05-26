@@ -81,3 +81,5 @@ gem 'bootstrap', '~> 4.3.1'
 group :production do
   gem 'pg'
 end
+
+gem 'youtube_rails'

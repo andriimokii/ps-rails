@@ -25,6 +25,9 @@
   <%= form.label :main_image %>
   <%= form.file_field :main_image %>
 
+  <%= form.label :youtube_embed_url %>
+  <%= form.text_field :youtube_embed_url, placeholder: "Copy and paste Youtube url" %>
+
   <div class="checkboxes">
     <%= form.collection_check_boxes :genre_ids, Genre.all.order(:name), :id, :name %>
   </div>

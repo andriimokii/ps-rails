@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
     before_save :set_slug
+    before_save :set_youtube_embed_url
 
     has_one_attached :main_image
 
@@ -22,6 +23,12 @@ class Movie < ApplicationRecord
     #     message: "must be a JPG or PNG image"
     # }
     validate :acceptable_image
+    validates :youtube_embed_url, uniqueness: true, format: {
+        with: /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+        message: "must be a YouTube video URL"
+    }
+
+    validate :acceptable_youtube_embed_url_chars
 
     def flop?
         if reviews.count > 50 && reviews.average(:stars).round >= 4
@@ -82,6 +89,11 @@ private
         self.slug = title.parameterize
     end
 
+    def set_youtube_embed_url
+        self.youtube_embed_url = YouTubeRails.youtube_embed_url_only(youtube_embed_url, 
+            ssl: true, disable_suggestion: true)
+    end
+
     def acceptable_image
         return unless main_image.attached?
 
@@ -93,6 +105,12 @@ private
 
         unless main_image.blob.content_type.in? valid_content_types
             errors.add(:main_image, "is not PNG or JPEG image")
+        end
+    end
+
+    def acceptable_youtube_embed_url_chars
+        if YouTubeRails.has_invalid_chars?(youtube_embed_url)
+            errors.add(:youtube_embed_url, "has invalid chars")
         end
     end
 end

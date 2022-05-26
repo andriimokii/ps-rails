@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_25_144022) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_135849) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_25_144022) do
     t.string "director"
     t.string "duration"
     t.string "slug"
+    t.string "youtube_embed_url"
   end
 
   create_table "reviews", force: :cascade do |t|
