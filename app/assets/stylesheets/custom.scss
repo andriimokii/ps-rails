@@ -109,7 +109,7 @@ header {
 
 // Movies Index Page
 
-section.movie {
+section.movie, section.genre {
   @extend .row;
   margin-bottom: 1.5rem;
   padding-bottom: 1em;
@@ -154,7 +154,7 @@ section.movie {
 
 // Movie Show Page
 
-section.movie-details {
+section.movie-details, section.genre-details {
   @extend .row;
 
   .image {

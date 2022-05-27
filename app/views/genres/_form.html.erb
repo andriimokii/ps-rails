@@ -4,5 +4,11 @@
   <%= form.label :name %>
   <%= form.text_field :name, autofocus: true %>
 
+  <%= form.label :description %>
+  <%= form.text_area :description, rows: 10 %>
+
+  <%= form.label :main_image %>
+  <%= form.file_field :main_image %>
+
   <%= form.submit %>
 <% end %>

@@ -1,8 +1,18 @@
-<ul>
-    <% @genres.each do |genre| %>
-        <li><%= link_to genre.name, genre %></li>
-    <% end %>
-</ul>
+<% @genres.each do |genre| %>
+  <section class="genre">
+    <div class="image">
+      <%= main_image(genre) %>
+    </div>
+    <div class="summary">
+      <h2>
+        <%= link_to genre.name, genre %>
+      </h2>
+      <p>
+        <%= truncate(genre.description, length: 150, separator: ' ') %>
+      </p>
+    </div>
+  </section>
+<% end %>
 
 <% if current_user_admin? %>
   <section class="admin">

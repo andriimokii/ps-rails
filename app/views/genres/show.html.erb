@@ -1,10 +1,25 @@
-<h3><strong><%= @genre.name %></strong> movies &#128526;:</h3>
+<section class="genre-details">
+  <div class="image">
+    <%= main_image(@genre) %>
+  </div>
 
-<ul>
-    <% @movies.each do |movie| %>
-        <li><%= link_to movie.title, movie %> &bull; <%= year_of(movie) %></li>
+  <div class="details">
+    <h1><%= @genre.name %></h1>
+    <p>
+      <%= @genre.description %>
+    </p>
+  </div>
+  <aside>
+    <% if @movies.present? %>
+      <h3>Movies:</h3>
+      <ul>
+        <% @movies.each do |movie| %>
+          <li><%= link_to movie.title, movie %> &bull; <%= year_of(movie) %></li>
+        <% end %>
+      </ul>
     <% end %>
-</ul>
+  </aside>
+</section>
 
 <% if current_user_admin? %>
   <section class="admin">
