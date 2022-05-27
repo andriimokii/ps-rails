@@ -39,7 +39,9 @@
       </tr>
     </table>
 
-    <%= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
+    <% unless @movie.review_present?(current_user) %>
+      <%= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
+    <% end %>
 
     <% if @movie.youtube_embed_url.present? %>
       <div class="movie-trailer">
