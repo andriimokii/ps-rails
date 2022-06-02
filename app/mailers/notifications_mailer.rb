@@ -1,5 +1,5 @@
 class NotificationsMailer < ApplicationMailer
-  default from: 'x1c.mailer@gmail.com'
+  default from: 'x1c.info.mailer@gmail.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
