@@ -93,8 +93,8 @@ Rails.application.configure do
 
   # CUSTOM
   # A Host to link to
-  config.action_mailer.default_url_options = { host: "lit-journey-27103.herokuapp.com" }
-  config.asset_host = 'lit-journey-27103.herokuapp.com'
+  config.action_mailer.default_url_options = { host: "https://lit-journey-27103.herokuapp.com" }
+  config.asset_host = 'https://lit-journey-27103.herokuapp.com'
 
   # Action Mailer
   config.action_mailer.delivery_method = :smtp
