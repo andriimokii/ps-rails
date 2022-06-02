@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "signup" => "users#new"
   get "signin" => "sessions#new"
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
   # get "movies" => "movies#index"
   # get "movies/new" => "movies#new"
   # get "movies/:id" => "movies#show", as: "movie"
