@@ -13,6 +13,9 @@ class NotificationsMailer < ApplicationMailer
     @token = params[:user].signed_id(purpose: "password_reset", 
                                     expires_in: 30.minutes)
 
-    mail to: params[:user].email
+    mail(
+      to: email_address_with_name(params[:user].email, params[:user].name),
+      subject: "#{params[:user].name} - forgot his password"
+    )
   end
 end

@@ -91,6 +91,22 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # CUSTOM
   # A Host to link to
   config.action_mailer.default_url_options = { host: "lit-journey-27103.herokuapp.com" }
+  config.asset_host = 'lit-journey-27103.herokuapp.com'
+
+  # Action Mailer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'lit-journey-27103.herokuapp.com',
+    user_name:            Rails.application.credentials.dig(:smtp_settings, :user_name),
+    password:             Rails.application.credentials.dig(:smtp_settings, :password),
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 
+  }
 end
