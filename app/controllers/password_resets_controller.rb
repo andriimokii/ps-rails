@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
         @user = User.find_by(email: params[:email])
         
         if @user.present?
-            NotificationsMailer.with(user: @user).forgot_password.deliver_now
+            NotificationsMailer.with(user: @user).forgot_password.deliver_later
         end
 
         redirect_to signin_url, notice: "Password reset URL was sent to your email"

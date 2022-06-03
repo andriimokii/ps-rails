@@ -83,3 +83,5 @@ group :production do
 end
 
 gem 'youtube_rails'
+
+gem 'sidekiq'
