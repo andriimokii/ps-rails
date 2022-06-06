@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            NotificationsMailer.welcome_aboard.deliver_later
+            NotificationsMailer.with(user: @user).welcome_aboard.deliver_later
             redirect_to @user, notice: %w(Thanks for signing up! We've sent
                 additional information on your email.)
         else
