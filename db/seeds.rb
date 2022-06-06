@@ -311,7 +311,8 @@ end
 ].each do |movie_title, file_name|
   movie = Movie.find_by!(title: movie_title)
   file = File.open(Rails.root.join("app/assets/images/#{file_name}"))
-  movie.main_image.attach(io: file, filename: file_name)
+  movie.main_image.attach(io: file, filename: file_name, 
+    content_type: 'image/png')
 end
 
 # Active Storage for Genres
@@ -329,5 +330,6 @@ end
 ].each do |genre_name, file_name|
   genre = Genre.find_by!(name: genre_name)
   file = File.open(Rails.root.join("app/assets/images/#{file_name}"))
-  genre.main_image.attach(io: file, filename: file_name)
+  genre.main_image.attach(io: file, filename: file_name, 
+    content_type: 'image/jpeg')
 end
