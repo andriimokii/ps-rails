@@ -85,3 +85,6 @@ end
 gem 'youtube_rails'
 
 gem 'sidekiq'
+
+gem 'activeadmin'
+gem 'devise'

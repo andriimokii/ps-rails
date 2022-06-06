@@ -333,3 +333,10 @@ end
   genre.main_image.attach(io: file, filename: file_name, 
     content_type: 'image/jpeg')
 end
+
+# Active Admin
+AdminUser.create!(
+  email: 'admin@example.com', 
+  password: seed_user_password, 
+  password_confirmation: seed_user_password
+)
