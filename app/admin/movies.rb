@@ -4,6 +4,13 @@ ActiveAdmin.register Movie do
 
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
+  scope :all
+  scope :released
+  scope :upcoming
+  scope :recent
+  scope :hits
+  scope :flops
+
   controller do
     private
 
