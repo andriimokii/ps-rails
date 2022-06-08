@@ -99,17 +99,7 @@ private
     end
 
     def acceptable_image
-        return unless main_image.attached?
-
-        unless main_image.blob.byte_size <= 1.megabyte
-            errors.add(:main_image, "is bigger than 1 Megabyte")
-        end
-
-        valid_content_types = ["image/png", "image/jpeg"]
-
-        unless main_image.blob.content_type.in? valid_content_types
-            errors.add(:main_image, "is not PNG or JPEG image")
-        end
+        Movies::AcceptableImage.new(self).call
     end
 
     def acceptable_youtube_embed_url_chars
