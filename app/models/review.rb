@@ -15,5 +15,11 @@ class Review < ApplicationRecord
     (stars / 5.0) * 100.0
   end
 
+  def published?
+    published
+  end
+
   scope :past_n_days, -> (n){ where("created_at > ?", n.days.ago ) }
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
 end

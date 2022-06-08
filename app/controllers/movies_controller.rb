@@ -24,6 +24,8 @@ class MoviesController < ApplicationController
     def show
         @fans = @movie.fans
         @genres = @movie.genres.order(:name)
+        @reviews = @movie.published_reviews
+
         # @favorite = @fans.include?(current_user)
         if current_user
             @favorite = current_user.favorites.find_by(movie_id: @movie.id)

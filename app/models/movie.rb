@@ -31,7 +31,7 @@ class Movie < ApplicationRecord
     validate :acceptable_youtube_embed_url_chars
 
     def flop?
-        if reviews.count > 50 && reviews.average(:stars).round >= 4
+        if published_reviews.count > 50 && published_reviews.average(:stars).round >= 4
             return false
         end
     
@@ -72,7 +72,7 @@ class Movie < ApplicationRecord
     end
 
     def average_stars
-        reviews.average(:stars) || 0.0
+        published_reviews.average(:stars) || 0.0
     end
 
     def average_stars_as_percent
@@ -84,7 +84,11 @@ class Movie < ApplicationRecord
     end
 
     def review_present?(current_user)
-        return true if reviews && reviews.find_by(user_id: current_user.id)
+        return true if published_reviews && published_reviews.find_by(user_id: current_user.id)
+    end
+    
+    def published_reviews
+        reviews.where(published: true)
     end
 
 private
