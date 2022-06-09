@@ -24,7 +24,7 @@ class GenresController < ApplicationController
 
   def destroy
     @genre.destroy
-    
+
     redirect_to(genres_url, alert: "Genre successfully deleted", status: :see_other)
   end
 
@@ -34,7 +34,7 @@ class GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    
+
     if @genre.save
       redirect_to genres_url, notice: "Genre successfully created"
     else

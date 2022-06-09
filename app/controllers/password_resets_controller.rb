@@ -1,11 +1,11 @@
 class PasswordResetsController < ApplicationController
   def new
-    
+
   end
 
   def create
     @user = User.find_by(email: params[:email])
-    
+
     if @user.present?
       NotificationsMailer.with(user: @user).forgot_password.deliver_later
     end

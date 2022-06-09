@@ -6,7 +6,7 @@ ActiveAdmin.register Genre do
     div style: "text-align:center;" do
       resource_selection_cell genre
       a main_image(genre), href: admin_genre_path(genre)
-      para do 
+      para do
         a genre.name, href: admin_genre_path(genre)
       end
     end

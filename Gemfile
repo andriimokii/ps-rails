@@ -88,3 +88,5 @@ gem 'sidekiq'
 
 gem 'activeadmin'
 gem 'devise'
+
+gem 'rubocop', '~> 1.30', require: false

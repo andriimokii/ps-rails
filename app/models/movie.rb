@@ -35,7 +35,7 @@ class Movie < ApplicationRecord
       return false
     end
 
-    total_gross.blank? || total_gross < 225000000 
+    total_gross.blank? || total_gross < 225000000
   end
 
   scope :recent, ->(max=5) { released.limit(max) }
@@ -98,7 +98,7 @@ class Movie < ApplicationRecord
   end
 
   def set_youtube_embed_url
-    self.youtube_embed_url = YouTubeRails.youtube_embed_url_only(youtube_embed_url, 
+    self.youtube_embed_url = YouTubeRails.youtube_embed_url_only(youtube_embed_url,
       ssl: true, disable_suggestion: true)
   end
 

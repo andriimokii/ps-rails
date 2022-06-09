@@ -15,9 +15,9 @@
       </p>
       <% if current_user?(review.user) || current_user_admin? %>
         <div class="actions">
-            <%= link_to "Delete Review", movie_review_path(@movie, review), 
+            <%= link_to "Delete Review", movie_review_path(@movie, review),
               class: "button", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
-            <%= link_to "Edit Review", edit_movie_review_path(@movie, review), 
+            <%= link_to "Edit Review", edit_movie_review_path(@movie, review),
               class: "button" %>
         </div>
       <% end %>

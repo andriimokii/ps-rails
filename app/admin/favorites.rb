@@ -1,6 +1,6 @@
 ActiveAdmin.register Favorite do
   permit_params :movie_id, :user_id
-  before_action :set_movie, only: [:create, :destroy]
+  before_action :set_movie, only: %i[create destroy]
 
   controller do
     private

@@ -20,7 +20,7 @@
           <li>
             <%= nav_link_to "Genres", genres_path %>
           </li>
-        </ul> 
+        </ul>
         <ul class="right">
           <% if current_user %>
             <li>
@@ -30,7 +30,7 @@
               <%= link_to "Account Settings", edit_user_path(current_user) %>
             </li>
             <li>
-              <%= link_to "Sign Out", session_path, 
+              <%= link_to "Sign Out", session_path,
                 data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' }  %>
             </li>
           <% else %>

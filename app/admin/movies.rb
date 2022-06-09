@@ -1,5 +1,5 @@
 ActiveAdmin.register Movie do
-  permit_params :title, :rating, :total_gross, :description, :released_on, 
+  permit_params :title, :rating, :total_gross, :description, :released_on,
                 :director, :duration, :slug, :youtube_embed_url
 
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
@@ -8,7 +8,7 @@ ActiveAdmin.register Movie do
     div style: "text-align:center;" do
       resource_selection_cell movie
       a main_image(movie), href: admin_movie_path(movie)
-      para do 
+      para do
         a movie.title, href: admin_movie_path(movie)
       end
     end

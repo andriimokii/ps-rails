@@ -209,7 +209,7 @@ end
 
 # Create Genres
 # [
-#   "Action", "Comedy", "Drama", "Romance", "Thriller", 
+#   "Action", "Comedy", "Drama", "Romance", "Thriller",
 #   "Fantasy", "Documentary", "Adventure", "Animation", "Sci-Fi"
 # ].each do |genre|
 #   Genre.create!(name: genre)
@@ -311,7 +311,7 @@ end
 ].each do |movie_title, file_name|
   movie = Movie.find_by!(title: movie_title)
   file = File.open(Rails.root.join("app/assets/images/#{file_name}"))
-  movie.main_image.attach(io: file, filename: file_name, 
+  movie.main_image.attach(io: file, filename: file_name,
     content_type: 'image/png')
 end
 
@@ -330,13 +330,13 @@ end
 ].each do |genre_name, file_name|
   genre = Genre.find_by!(name: genre_name)
   file = File.open(Rails.root.join("app/assets/images/#{file_name}"))
-  genre.main_image.attach(io: file, filename: file_name, 
+  genre.main_image.attach(io: file, filename: file_name,
     content_type: 'image/jpeg')
 end
 
 # Active Admin
 AdminUser.create!(
-  email: 'admin@example.com', 
-  password: seed_user_password, 
+  email: 'admin@example.com',
+  password: seed_user_password,
   password_confirmation: seed_user_password
 )

@@ -10,7 +10,7 @@ class NotificationsMailer < ApplicationMailer
     # @greeting = "Hi"
 
     # mail to: "to@example.org"
-    @token = params[:user].signed_id(purpose: "password_reset", 
+    @token = params[:user].signed_id(purpose: "password_reset",
                                     expires_in: 30.minutes)
 
     mail(
@@ -18,7 +18,7 @@ class NotificationsMailer < ApplicationMailer
       subject: "#{params[:user].name} - Forgot his password"
     )
   end
-  
+
   def welcome_aboard
     mail(
       to: email_address_with_name(params[:user].email, params[:user].name),

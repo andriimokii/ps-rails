@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to(movies_url, alert: "Account successfully deleted!", 
+    redirect_to(movies_url, alert: "Account successfully deleted!",
       status: :see_other)
   end
 

@@ -24,7 +24,7 @@
 <% if current_user_admin? %>
   <section class="admin">
     <%= link_to "Edit Genre", edit_genre_path(@genre), class: "button" %>
-    <%= link_to "Delete Genre", @genre, class: "button", 
+    <%= link_to "Delete Genre", @genre, class: "button",
       data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
   </section>
 <% end %>

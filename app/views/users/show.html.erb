@@ -6,11 +6,11 @@
       <%= link_to "Edit Account", edit_user_path(@user), class: "button edit" %>
     <% end %>
     <% if current_user_admin? %>
-      <%= link_to "Destroy Account", @user, class: "button delete", 
+      <%= link_to "Destroy Account", @user, class: "button delete",
         data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
     <% end %>
   </div>
-  
+
   <h3>Member Since</h3>
   <p>
     <%= @user.created_at.strftime("%B %Y") %>
