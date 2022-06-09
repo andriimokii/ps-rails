@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :username, :admin, :password_digest
+  permit_params :name, :email, :username, :admin, :password, :password_confirmation
   before_action :set_user, only: [:show, :destroy, :edit, :update]
 
   scope :all
