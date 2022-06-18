@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationsMailer < ApplicationMailer
   default from: 'x1c.info.mailer@gmail.com'
 
@@ -10,8 +12,8 @@ class NotificationsMailer < ApplicationMailer
     # @greeting = "Hi"
 
     # mail to: "to@example.org"
-    @token = params[:user].signed_id(purpose: "password_reset",
-                                    expires_in: 30.minutes)
+    @token = params[:user].signed_id(purpose: 'password_reset',
+                                     expires_in: 30.minutes)
 
     mail(
       to: email_address_with_name(params[:user].email, params[:user].name),
@@ -25,5 +27,4 @@ class NotificationsMailer < ApplicationMailer
       subject: "#{params[:user].name} - Welcome aboard!"
     )
   end
-
 end

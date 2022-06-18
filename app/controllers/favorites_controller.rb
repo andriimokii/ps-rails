@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :require_signin
   before_action :set_movie, only: [:create, :destroy]

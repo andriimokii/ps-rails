@@ -1,6 +1,7 @@
 %h1 Email to Reset Password
-= form_with url: password_resets_path, local: true, |
-  data: { turbo: false } do |form|                  |
+= form_with url: password_resets_path, local: true,
+            data: { turbo: false } do |form|
+
   = form.label :email
   = form.email_field :email
-  = form.submit "Reset Password"
+  = form.submit 'Reset Password'

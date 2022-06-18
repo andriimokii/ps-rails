@@ -9,4 +9,4 @@
         = truncate(genre.description, length: 150, separator: ' ')
 - if current_user_admin?
   %section.admin
-    = link_to "Add New Genre", new_genre_path, class: "button"
+    = link_to 'Add New Genre', new_genre_path, class: 'button'

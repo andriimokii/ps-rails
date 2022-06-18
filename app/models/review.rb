@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Review < ApplicationRecord
   belongs_to :movie
   belongs_to :user
@@ -8,12 +10,12 @@ class Review < ApplicationRecord
   validates :comment, length: { minimum: 4 }
   validates :stars, inclusion: {
     in: STARS,
-    message: "must be between 1 and 5"
+    message: 'must be between 1 and 5'
   }
 
   def stars_as_percent
     (stars / 5.0) * 100.0
   end
 
-  scope :past_n_days, -> (n){ where("created_at > ?", n.days.ago ) }
+  scope :past_n_days, ->(n){ where('created_at > ?', n.days.ago ) }
 end

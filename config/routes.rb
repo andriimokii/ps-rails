@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   resources :genres
-  root "movies#index"
+  root 'movies#index'
 
-  get "movies/filter/:filter" => "movies#index", as: :filtered_movies
+  get 'movies/filter/:filter' => 'movies#index', as: :filtered_movies
 
   resources :movies do
     resources :reviews
@@ -16,8 +18,8 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  get "signup" => "users#new"
-  get "signin" => "sessions#new"
+  get 'signup' => 'users#new'
+  get 'signin' => 'sessions#new'
 
   resources :password_resets, only: [:new, :create, :edit, :update]
   # get "movies" => "movies#index"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :require_signin, except: [:new, :create]
   before_action :require_correct_user, only: [:edit, :update]
@@ -30,12 +32,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "Account successfully updated!"
+      redirect_to @user, notice: 'Account successfully updated!'
     else
       render :edit
     end
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to(movies_url, alert: "Account successfully deleted!",
+    redirect_to(movies_url, alert: 'Account successfully deleted!',
                             status: :see_other)
   end
 

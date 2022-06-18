@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GenresController < ApplicationController
   before_action :require_signin, except: [:index, :show]
   before_action :require_admin, except: [:index, :show]
@@ -16,7 +18,7 @@ class GenresController < ApplicationController
 
   def update
     if @genre.update(genre_params)
-      redirect_to @genre, notice: "Genre successfully updated!"
+      redirect_to @genre, notice: 'Genre successfully updated!'
     else
       render :edit
     end
@@ -25,7 +27,7 @@ class GenresController < ApplicationController
   def destroy
     @genre.destroy
 
-    redirect_to(genres_url, alert: "Genre successfully deleted", status: :see_other)
+    redirect_to(genres_url, alert: 'Genre successfully deleted', status: :see_other)
   end
 
   def new
@@ -36,12 +38,11 @@ class GenresController < ApplicationController
     @genre = Genre.new(genre_params)
 
     if @genre.save
-      redirect_to genres_url, notice: "Genre successfully created"
+      redirect_to genres_url, notice: 'Genre successfully created'
     else
       render :new
     end
   end
-
 
 private
 

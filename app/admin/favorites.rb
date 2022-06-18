@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Favorite do
   permit_params :movie_id, :user_id
   before_action :set_movie, only: %i[create destroy]

@@ -1,16 +1,16 @@
 = form_with model: user, local: true, data: { turbo: false } do |form|
-  = render "shared/errors", object: user
+  = render 'shared/errors', object: user
   = form.label :name
   = form.text_field :name, autofocus: true
   = form.label :username
-  = form.text_field :username, placeholder: "Alphanumeric characters only!"
+  = form.text_field :username, placeholder: 'Alphanumeric characters only!'
   = form.label :email
   = form.email_field :email
   = form.label :password
   = form.password_field :password
-  = form.label :password_confirmation, "Confirm Password"
+  = form.label :password_confirmation, 'Confirm Password'
   = form.password_field :password_confirmation
   - if user.new_record?
-    = form.submit "Create Account"
+    = form.submit 'Create Account'
   - else
-    = form.submit "Update Account"
+    = form.submit 'Update Account'

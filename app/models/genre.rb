@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Genre < ApplicationRecord
   before_save :set_slug
 

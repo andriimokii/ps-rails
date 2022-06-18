@@ -8,9 +8,9 @@
       %h3
         = total_gross(movie)
       %span.stars
-        = render "shared/stars", percent: movie.average_stars_as_percent
+        = render 'shared/stars', percent: movie.average_stars_as_percent
       %p
         = truncate(movie.description, length: 150, separator: ' ')
 - if current_user_admin?
   %section.admin
-    = link_to "Add New Movie", new_movie_path, class: "button"
+    = link_to 'Add New Movie', new_movie_path, class: 'button'

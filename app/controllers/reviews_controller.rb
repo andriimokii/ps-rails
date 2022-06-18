@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
   before_action :require_signin, except: [:index]
   before_action :set_movie

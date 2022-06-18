@@ -6,13 +6,13 @@
   %h2= mail_to(@user.email)
   .actions
     - if current_user?(@user)
-      = link_to "Edit Account", edit_user_path(@user), class: "button edit"
+      = link_to 'Edit Account', edit_user_path(@user), class: 'button edit'
     - if current_user_admin?
-      = link_to "Destroy Account", @user, class: "button delete",           |
-        data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } |
+      = link_to 'Destroy Account', @user, class: 'button delete',
+        data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' }
   %h3 Member Since
   %p
-    = @user.created_at.strftime("%B %Y")
+    = @user.created_at.strftime('%B %Y')
   %aside
     .details
       - if @favorite_movies.present?
@@ -32,7 +32,7 @@
           %span.title
             = link_to review.movie.title, review.movie
           (#{publish_status(review)})
-          \#{render "shared/stars", percent: review.stars_as_percent}
+          = render 'shared/stars', percent: review.stars_as_percent
           %span.date
             = time_ago_in_words(review.created_at)
             ago

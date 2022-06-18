@@ -1,11 +1,11 @@
 = form_with model: movie, local: true, data: { turbo: false } do |form|
-  = render "shared/errors", object: movie
+  = render 'shared/errors', object: movie
   = form.label :title
   = form.text_field :title, autofocus: true
   = form.label :description
   = form.text_area :description, rows: 10
   = form.label :rating
-  = form.select :rating, Movie::RATINGS, prompt: "Pick one"
+  = form.select :rating, Movie::RATINGS, prompt: 'Pick one'
   = form.label :released_on
   = form.date_field :released_on
   = form.label :total_gross
@@ -17,7 +17,7 @@
   = form.label :main_image
   = form.file_field :main_image
   = form.label :youtube_embed_url
-  = form.text_field :youtube_embed_url, placeholder: "Copy and paste Youtube url"
+  = form.text_field :youtube_embed_url, placeholder: 'Copy and paste Youtube url'
   .checkboxes
     = form.collection_check_boxes :genre_ids, Genre.all.order(:name), :id, :name
   = form.submit

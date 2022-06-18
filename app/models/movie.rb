@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Movie < ApplicationRecord
   before_save :set_slug
   before_save :set_youtube_embed_url
@@ -25,7 +27,7 @@ class Movie < ApplicationRecord
   validate :acceptable_image
   validates :youtube_embed_url, uniqueness: true, format: {
     with: /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
-    message: "must be a YouTube video URL"
+    message: 'must be a YouTube video URL'
   }
 
   validate :acceptable_youtube_embed_url_chars
@@ -40,35 +42,35 @@ class Movie < ApplicationRecord
 
   scope :recent, ->(max=5) { released.limit(max) }
 
-  scope :upcoming, lambda { where("released_on > ?", Time.now).
+  scope :upcoming, lambda { where('released_on > ?', Time.now).
     order(released_on: :asc) }
 
-  scope :released, -> { where("released_on < ?", Time.now).
+  scope :released, -> { where('released_on < ?', Time.now).
     order(released_on: :desc) }
 
     # def self.released
     #     where("released_on < ?", Time.now).order(released_on: :desc)
     # end
 
-  scope :hits, -> { released.where("total_gross >= 225000000").
+  scope :hits, -> { released.where('total_gross >= 225000000').
     order(total_gross: :desc) }
 
     # def self.hits
     #     where("total_gross >= 300000000").order(total_gross: :desc)
     # end
 
-  scope :flops, -> { released.where("total_gross < 225000000").
+  scope :flops, -> { released.where('total_gross < 225000000').
     order(total_gross: :asc) }
 
     # def self.flops
     #     where("total_gross < 22500000").order(total_gross: :asc)
     # end
 
-  scope :grossed_less_than, -> (amount){ released.where("total_gross < ?", amount) }
-  scope :grossed_greater_than, -> (amount){ released.where("total_gross > ?", amount) }
+  scope :grossed_less_than, ->(amount){ released.where('total_gross < ?', amount) }
+  scope :grossed_greater_than, ->(amount){ released.where('total_gross > ?', amount) }
 
   def self.recently_added
-    order("created_at desc").limit(3)
+    order('created_at desc').limit(3)
   end
 
   def average_stars
@@ -99,7 +101,7 @@ class Movie < ApplicationRecord
 
   def set_youtube_embed_url
     self.youtube_embed_url = YouTubeRails.youtube_embed_url_only(youtube_embed_url,
-      ssl: true, disable_suggestion: true)
+                                                                 ssl: true, disable_suggestion: true)
   end
 
   def acceptable_image
@@ -108,7 +110,7 @@ class Movie < ApplicationRecord
 
   def acceptable_youtube_embed_url_chars
     if YouTubeRails.has_invalid_chars?(youtube_embed_url)
-      errors.add(:youtube_embed_url, "has invalid chars")
+      errors.add(:youtube_embed_url, 'has invalid chars')
     end
   end
 end

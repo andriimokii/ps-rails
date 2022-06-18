@@ -3,7 +3,7 @@
 %ul.reviews
   - @reviews.each do |review|
     %li
-      = render "shared/stars", percent: review.stars_as_percent
+      = render 'shared/stars', percent: review.stars_as_percent
       %p
         = link_to review.user.name, review.user
         %span.date
@@ -13,7 +13,7 @@
         = review.comment
       - if current_user?(review.user) || current_user_admin?
         .actions
-          = link_to "Delete Review", movie_review_path(@movie, review),                          |
-            class: "button", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } |
-          = link_to "Edit Review", edit_movie_review_path(@movie, review), |
-            class: "button"                                                |
+          = link_to 'Delete Review', movie_review_path(@movie, review),
+            class: 'button', data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' }
+          = link_to 'Edit Review', edit_movie_review_path(@movie, review),
+            class: 'button'

@@ -12,8 +12,8 @@
       = year_of(@movie)
       • #{@movie.rating}
     .reviews
-      = render "shared/stars", percent: @movie.average_stars_as_percent
-      = link_to pluralize(@reviews.size, "review"), movie_reviews_path(@movie)
+      = render 'shared/stars', percent: @movie.average_stars_as_percent
+      = link_to pluralize(@reviews.size, 'review'), movie_reviews_path(@movie)
     %p
       = @movie.description
     %table
@@ -26,12 +26,14 @@
       %tr
         %th Total Gross:
         %td= total_gross(@movie)
-    - if current_user
-      - unless @movie.review_present?(current_user)
-        = link_to "Write Review", new_movie_review_path(@movie), class: "review"
+    - if current_user && !@movie.review_present?(current_user)
+      = link_to 'Write Review', new_movie_review_path(@movie), class: 'review'
     - if @movie.youtube_embed_url.present?
       .movie-trailer
-        %iframe{:src => "#{@movie.youtube_embed_url}", :title => "YouTube video player", :frameborder => "0", :allow => "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => true}
+        %iframe{ src: @movie.youtube_embed_url, title: 'YouTube video player',
+          frameborder: '0', allow: 'accelerometer; autoplay; clipboard-write; |
+            encrypted-media; gyroscope; picture-in-picture', |
+          allowfullscreen: true }
   %aside
     - if @fans.present?
       %h3 Fans:
@@ -48,6 +50,6 @@
             = link_to genre.name, genre
 - if current_user_admin?
   %section.admin
-    = link_to "Edit Movie", edit_movie_path(@movie), class: "button"
-    = link_to "Delete Movie", movie_path(@movie), class: "button",        |
-      data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } |
+    = link_to 'Edit Movie', edit_movie_path(@movie), class: 'button'
+    = link_to 'Delete Movie', movie_path(@movie), class: 'button',
+      data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' }
