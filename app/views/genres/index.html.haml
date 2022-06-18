@@ -1,0 +1,12 @@
+- @genres.each do |genre|
+  %section.genre
+    .image
+      = main_image(genre)
+    .summary
+      %h2
+        = link_to genre.name, genre
+      %p
+        = truncate(genre.description, length: 150, separator: ' ')
+- if current_user_admin?
+  %section.admin
+    = link_to "Add New Genre", new_genre_path, class: "button"

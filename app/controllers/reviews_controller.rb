@@ -11,17 +11,17 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    unless @movie.review_present?(current_user)
+    if @movie.review_present?(current_user)
+      redirect_to @movie, alert: "Can't create more than 1 review!"
+    else
       @review = @movie.reviews.new(review_params)
       @review.user = current_user
 
       if @review.save
-        redirect_to movie_reviews_url(@movie), notice: "Thanks for your review!"
+        redirect_to movie_reviews_url(@movie), notice: 'Thanks for your review!'
       else
         render :new
       end
-    else
-      redirect_to @movie, alert: "Can't create more than 1 review!"
     end
   end
 
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
     @review = @movie.reviews.find(params[:id])
     @review.destroy
 
-    redirect_to(movie_reviews_url, danger: "Review successfully deleted!", status: :see_other)
+    redirect_to(movie_reviews_url, danger: 'Review successfully deleted!', status: :see_other)
   end
 
   def edit
@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
 
     if @review.update(review_params)
       # flash[:notice] = "Movie successfully updated!"
-      redirect_to movie_reviews_url(@movie), notice: "Review successfully updated!"
+      redirect_to movie_reviews_url(@movie), notice: 'Review successfully updated!'
     else
       render :edit
     end

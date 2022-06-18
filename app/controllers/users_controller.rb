@@ -44,14 +44,14 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to(movies_url, alert: "Account successfully deleted!",
-      status: :see_other)
+                            status: :see_other)
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password,
-      :password_confirmation)
+                                 :password_confirmation)
   end
 
   def require_correct_user

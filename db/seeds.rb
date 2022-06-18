@@ -196,7 +196,7 @@ User.create!([
 ])
 
 # Create reviews and fans for Movies
-Movie.all.each do |movie|
+Movie.find_each do |movie|
   movie.reviews.create!([
     {
       stars: rand(1..5),
@@ -290,7 +290,7 @@ Genre.create!([
 ])
 
 # Assign each Genre to Movie
-Movie.all.each do |movie|
+Movie.find_each do |movie|
   movie.genres << Genre.all.sample
 end
 

@@ -1,0 +1,41 @@
+%section.user
+  %h1
+    = profile_image(@user)
+    = @user.name
+    (#{@user.username})
+  %h2= mail_to(@user.email)
+  .actions
+    - if current_user?(@user)
+      = link_to "Edit Account", edit_user_path(@user), class: "button edit"
+    - if current_user_admin?
+      = link_to "Destroy Account", @user, class: "button delete",           |
+        data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } |
+  %h3 Member Since
+  %p
+    = @user.created_at.strftime("%B %Y")
+  %aside
+    .details
+      - if @favorite_movies.present?
+        %h3
+          = @favorite_movies.size
+          Favorite Movies:
+        .favorite-movies
+          - @favorite_movies.each do |favorite_movie|
+            = link_to main_image(favorite_movie), favorite_movie
+  - if @reviews.present?
+    %h3
+      = @reviews.size
+      Reviews:
+    - @reviews.each do |review|
+      .review
+        .details
+          %span.title
+            = link_to review.movie.title, review.movie
+          (#{publish_status(review)})
+          \#{render "shared/stars", percent: review.stars_as_percent}
+          %span.date
+            = time_ago_in_words(review.created_at)
+            ago
+          %p
+            = profile_image(@user, 35)
+            = review.comment

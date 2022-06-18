@@ -6,24 +6,21 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
 
-    if @user.present?
-      NotificationsMailer.with(user: @user).forgot_password.deliver_later
-    end
+    @user.present? && NotificationsMailer.with(user: @user).forgot_password.deliver_later
 
-    redirect_to signin_url, notice: "Password reset URL was sent to your email"
+    redirect_to signin_url, notice: 'Password reset URL was sent to your email'
   end
 
   def edit
-    @user = User.find_signed!(params[:id], purpose: "password_reset")
-
-    rescue ActiveSupport::MessageVerifier::InvalidSignature
-      redirect_to signin_url, alert: "Your token has expired. Please, try again!"
+    @user = User.find_signed!(params[:id], purpose: 'password_reset')
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    redirect_to signin_url, alert: 'Your token has expired. Please, try again!'
   end
 
   def update
-    @user = User.find_signed!(params[:id], purpose: "password_reset")
+    @user = User.find_signed!(params[:id], purpose: 'password_reset')
     if @user.update(password_params)
-      redirect_to signin_url, notice: "Your password was changed!"
+      redirect_to signin_url, notice: 'Your password was changed!'
     else
       render :edit
     end

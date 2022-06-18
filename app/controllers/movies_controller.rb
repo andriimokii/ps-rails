@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
     # fail
     if @movie.update(movie_params)
       # flash[:notice] = "Movie successfully updated!"
-      redirect_to @movie, notice: "Movie successfully updated!"
+      redirect_to @movie, notice: 'Movie successfully updated!'
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save
-      redirect_to @movie, notice: "Movie successfully created!"
+      redirect_to @movie, notice: 'Movie successfully created!'
     else
       render :new
     end
@@ -64,7 +64,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
 
-    redirect_to(movies_url, danger: "Movie successfully deleted!", status: :see_other)
+    redirect_to(movies_url, danger: 'Movie successfully deleted!', status: :see_other)
   end
 
   private
@@ -77,7 +77,7 @@ class MoviesController < ApplicationController
   end
 
   def movies_filter
-    if params[:filter].in? %w(upcoming recent hits flops)
+    if params[:filter].in? %w[upcoming recent hits flops]
       params[:filter]
     else
       :released

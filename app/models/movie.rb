@@ -31,7 +31,7 @@ class Movie < ApplicationRecord
   validate :acceptable_youtube_embed_url_chars
 
   def flop?
-    if published_reviews.count > 50 && published_reviews.average(:stars).round >= 4
+    if published_reviews.size > 50 && published_reviews.average(:stars).round >= 4
       return false
     end
 

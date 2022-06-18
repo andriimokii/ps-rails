@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   private
 
   def require_signin
-    unless current_user
-      session[:intended_url] = request.url
-      redirect_to signin_url, alert: "First you need to Sign in!"
-    end
+    return if current_user
+
+    session[:intended_url] = request.url
+    redirect_to signin_url, alert: 'First you need to Sign in!'
   end
 
   def current_user
@@ -23,9 +23,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user?
 
   def require_admin
-    unless current_user_admin?
-      redirect_to root_url, alert: "Unauthorized Access!"
-    end
+    return if current_user_admin?
+
+    redirect_to root_url, alert: 'Unauthorized Access!'
   end
 
   def current_user_admin?
@@ -33,5 +33,4 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user_admin?
-
 end

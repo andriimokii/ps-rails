@@ -1,0 +1,20 @@
+%section.genre-details
+  .image
+    = main_image(@genre)
+  .details
+    %h1= @genre.name
+    %p
+      = @genre.description
+  %aside
+    - if @movies.present?
+      %h3 Movies:
+      %ul
+        - @movies.each do |movie|
+          %li
+            = link_to movie.title, movie
+            • #{year_of(movie)}
+- if current_user_admin?
+  %section.admin
+    = link_to "Edit Genre", edit_genre_path(@genre), class: "button"
+    = link_to "Delete Genre", @genre, class: "button",                    |
+      data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } |

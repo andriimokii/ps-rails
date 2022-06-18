@@ -90,3 +90,8 @@ gem 'activeadmin'
 gem 'devise'
 
 gem 'rubocop', '~> 1.30', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
+
+gem 'haml'
+gem "haml-rails", "~> 2.0"

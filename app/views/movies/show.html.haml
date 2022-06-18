@@ -1,0 +1,53 @@
+%section.movie-details
+  .image
+    = main_image(@movie)
+    - if current_user
+      .faves
+        = fave_or_unfave_button(@movie, @favorite)
+        .count
+          = @fans.size
+  .details
+    %h1= @movie.title
+    %h2
+      = year_of(@movie)
+      • #{@movie.rating}
+    .reviews
+      = render "shared/stars", percent: @movie.average_stars_as_percent
+      = link_to pluralize(@reviews.size, "review"), movie_reviews_path(@movie)
+    %p
+      = @movie.description
+    %table
+      %tr
+        %th Director:
+        %td= @movie.director
+      %tr
+        %th Duration:
+        %td= @movie.duration
+      %tr
+        %th Total Gross:
+        %td= total_gross(@movie)
+    - if current_user
+      - unless @movie.review_present?(current_user)
+        = link_to "Write Review", new_movie_review_path(@movie), class: "review"
+    - if @movie.youtube_embed_url.present?
+      .movie-trailer
+        %iframe{:src => "#{@movie.youtube_embed_url}", :title => "YouTube video player", :frameborder => "0", :allow => "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => true}
+  %aside
+    - if @fans.present?
+      %h3 Fans:
+      %ul
+        - @fans.each do |fan|
+          %li
+            = profile_image(fan, 200)
+            = link_to fan.username, fan
+    - if @genres.present?
+      %h3 Genres
+      %ul
+        - @genres.each do |genre|
+          %li
+            = link_to genre.name, genre
+- if current_user_admin?
+  %section.admin
+    = link_to "Edit Movie", edit_movie_path(@movie), class: "button"
+    = link_to "Delete Movie", movie_path(@movie), class: "button",        |
+      data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } |
